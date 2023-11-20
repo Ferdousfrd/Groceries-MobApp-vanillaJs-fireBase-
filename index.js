@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"  //importing 'initializeApp' function
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"  //importing 'getDatabse,ref and push' function
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"  //importing 'getDatabse,ref and push' function
 
 
 const appSettings = {
@@ -12,10 +12,32 @@ const groceriesInBag = ref(database, "groceris")    //adding reference to the da
 
 const inputEl = document.getElementById("input-field")
 const addBtnEl = document.getElementById("add-btn")
+const shoppingListEl = document.getElementById("shopping-list")
 
 
 addBtnEl.addEventListener("click", function(){
     let inputValue = inputEl.value
     push(groceriesInBag, inputValue)                //pushing the values in our refrenced database and items
-    console.log(`${inputValue} added to the databse`)
+
+    clearInputSection()
 })
+
+onValue(groceriesInBag, function(snapshot){
+    let databaseListArray = (Object.values(snapshot.val()))
+    clearShoppingListEl()
+    for(let i = 0;i<databaseListArray.length;i++){
+        addingItemInList(databaseListArray[i])
+    }
+})
+
+
+function clearInputSection(){
+    inputEl.value = ""
+}
+function addingItemInList(itemValue){
+    shoppingListEl.innerHTML += `<li>${itemValue}</li>`
+
+}
+function clearShoppingListEl(){
+    shoppingListEl.innerHTML = ""
+}
