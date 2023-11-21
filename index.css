@@ -40,3 +40,21 @@ button{
     margin: 0px auto;
     width: 150px;
 }
+
+ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 5px;
+}
+
+ul li{
+    background-color: #FFFDF8;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 20px;
+    flex-grow: 1;
+}

@@ -23,10 +23,14 @@ addBtnEl.addEventListener("click", function(){
 })
 
 onValue(groceriesInBag, function(snapshot){
-    let databaseListArray = (Object.values(snapshot.val()))
+    let databaseListArray = (Object.entries(snapshot.val()))
     clearShoppingListEl()
     for(let i = 0;i<databaseListArray.length;i++){
-        addingItemInList(databaseListArray[i])
+        let currentItem = databaseListArray[i]
+        let currentItemID = currentItem[0]
+        let currentItemValue = currentItem[1]
+
+        addingItemInList(currentItemID)
     }
 })
 
