@@ -1,4 +1,4 @@
-# Groceries List Web App
+# Groceries Tracker
 
 This is a simple web application for managing a groceries list. Users can add, view, and remove items from the list.
 
